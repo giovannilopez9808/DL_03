@@ -1,10 +1,10 @@
-from Modules.quadratic_membrane_filter import QuadraticMembraneFilter
+from Modules.robust_membrane_filter import RobustMembraneFilter
 import matplotlib.pyplot as plt
 from PIL import Image
 
 alpha = 100
 img = Image.open('guanajuato.jpg')
-model = QuadraticMembraneFilter(
+model = RobustMembraneFilter(
     img,
     alpha
 )

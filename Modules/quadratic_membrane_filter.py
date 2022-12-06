@@ -63,13 +63,14 @@ class QuadraticMembraneFilter:
         tensor = tensor.to(self.device)
         return tensor
 
-    def _get_optimizer(self,) -> None:
+    def _get_optimizer(self) -> None:
         """
         -
         """
         self.optimizer = Adam([self.output])
 
-    def _L2_gradient(self, f):
+    def _L2_gradient(self,
+                     f: Tensor) -> Tensor:
         '''
         Calcula el promedio de la magnitud del gradiente espacial
         de la imagen multicanal f  (c,h,w)
@@ -80,7 +81,8 @@ class QuadraticMembraneFilter:
         l2 = mean(fx**2+fy**2)
         return l2
 
-    def _gradient(self, f) -> tuple:
+    def _gradient(self,
+                  f: Tensor) -> tuple:
         '''
         Entrada
         f:      (c,h,w), float32 or float64
@@ -111,9 +113,8 @@ class QuadraticMembraneFilter:
         -
         """
         self._fit(epochs)
-        image = self.to_image(self.image)
         output = self.to_image(self.output)
-        return image, output
+        return output
 
     def _fit(self,
              epochs: int) -> None:
