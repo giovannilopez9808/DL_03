@@ -107,7 +107,7 @@ class SIRENnet(Module):
                  output_dim: int = 1) -> None:
         super().__init__()
         # Modelo inicialmente vacio
-        self.net = []
+        self.net = list()
         # Se agragan capas Seno ocultas
         is_first = True
         for i in range(len(hidden_dims)):
@@ -178,10 +178,6 @@ class SIRENModel:
                 history[-1])
             )
         self.history = history
-        save(
-            self.model,
-            "model_implicit.pt"
-        )
 
     def test(self) -> None:
         rows, cols = self.dataset.image.size
